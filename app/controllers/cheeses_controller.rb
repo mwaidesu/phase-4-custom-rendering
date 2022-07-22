@@ -1,9 +1,8 @@
 class CheesesController < ApplicationController
-
   # GET /cheeses
   def index
     cheeses = Cheese.all
-    render json: cheeses
+    render json: cheeses, except: %i[created_at updated_at], methods: [:summary]
   end
 
   # GET /cheeses/:id
@@ -11,5 +10,4 @@ class CheesesController < ApplicationController
     cheese = Cheese.find_by(id: params[:id])
     render json: cheese
   end
-
 end
